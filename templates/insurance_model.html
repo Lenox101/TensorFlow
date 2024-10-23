@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Predication</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 50%;
+            height: 30px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        input[type="radio"]:checked+label {
+            color: #337ab7;
+        }
+
+        label[for="affordability_yes"],
+        label[for="affordability_no"] {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        br {
+            margin-bottom: 20px;
+        }
+
+        input[type='submit'] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/predict" method="post">
+        <label for="age">Enter your Current Age</label><br>
+        <input type="number" id="age" name="age" value="" required><br><br>
+
+        <label>Affordability</label><br>
+        <input type="radio" id="affordability_yes" name="affordability" value="1" required>
+        <label for="affordability_yes">Yes</label><br>
+
+        <input type="radio" id="affordability_no" name="affordability" value="0" required>
+        <label for="affordability_no">No</label><br>
+        <br>
+        <input type="submit" value="Predict">
+    </form>
+<br>
+    {% if prediction_text %}
+    <h3 class="text-center">{{ prediction_text }}</h3>
+    {% endif %}
+</body>
+
+</html>
